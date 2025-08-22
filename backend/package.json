@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "type": "module"
-cd frontend
+
 ,
   "dependencies": {
     "cors": "^2.8.5",
