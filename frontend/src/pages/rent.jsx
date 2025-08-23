@@ -55,12 +55,10 @@ function rent() {
                   {item.description}
                 </p>
                 <p className="text-gray-500 text-sm mb-1">
-                  {t("rent_location")}
-                  {item.location}
+                  {t("rent_location", { location: item.location })}
                 </p>
                 <p className="text-green-700 font-bold text-lg mb-4">
-                  {t("rent_price")}
-                  {item.pricePerDay}
+                  {t("rent_price", { price: item.pricePerDay })}
                 </p>
 
                 <button className="mt-auto bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition">
