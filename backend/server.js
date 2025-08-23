@@ -9,6 +9,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 // Import your routes
 import authRouter from "./routes/auth.route.js";
 import healthdashboardRouter from "./routes/healthdashboard.route.js";
+import equipmentRouter from "./routes/equipment.route.js";
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ app.use(
 );
 app.use(express.json());
 app.use(cookieParser());
+app.use('/uploads', express.static('uploads'));
 
 // ✅ MongoDB connection
 mongoose
@@ -56,6 +58,7 @@ app.post("/api/ai/chat", async (req, res) => {
 // ✅ Other routes
 app.use("/api/auth", authRouter);
 app.use("/api/healthdashboard", healthdashboardRouter);
+app.use('/api/equipment', equipmentRouter);
 
 // ✅ Error middleware
 app.use((err, req, res, next) => {

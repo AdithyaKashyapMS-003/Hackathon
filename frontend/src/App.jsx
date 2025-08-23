@@ -8,10 +8,12 @@ import Solutions from "./pages/Solutions";
 import Guides from "./pages/Guides";
 import Community from "./pages/Community";
 import FarmerDashboard from "./pages/FarmerDashboard";
-import MarketPrices from "./pages/MarketPlace";
+import MarketPlace from "./pages/MarketPlace";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/Signin";
 import AiChat from "./pages/Ai-chat";
+import RentalUpload from "./pages/RentalUpload";
+import Rent from "./pages/rent";
 
 function App() {
   return (
@@ -25,10 +27,12 @@ function App() {
           <Route path="/guides" element={<Guides />} />
           <Route path="/community" element={<Community />} />
           <Route path="/dashboard" element={<FarmerDashboard />} />
-          <Route path="/market-prices" element={<MarketPrices />} />
+          <Route path="/market-place" element={<MarketPlace />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/ai-chat" element={<AiChat />} />
+          <Route path="/marketplace/upload" element={<RentalUpload />} />
+          <Route path="/marketplace/rent" element={<Rent />} />
         </Routes>
       </main>
       <Footer />

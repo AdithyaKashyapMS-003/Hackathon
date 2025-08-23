@@ -28,8 +28,8 @@ function Navbar() {
           <Link to="/dashboard" className="hidden sm:inline-block text-gray-600 font-medium hover:text-gray-900">
             Dashboard
           </Link>
-          <Link to="/market-prices" className="hidden sm:inline-block text-gray-600 font-medium hover:text-gray-900">
-            Market Prices
+          <Link to="/market-place" className="hidden sm:inline-block text-gray-600 font-medium hover:text-gray-900">
+            Market Place
           </Link>
 
           {/* Show Sign In only if not signed in */}
