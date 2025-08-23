@@ -83,10 +83,10 @@ function Navbar() {
           {/* Show Sign In only if not signed in */}
           {!isSignedIn && (
             <Link
-              to="/signin"
+              to="/signup"
               className="py-2 px-4 border border-blue-500 rounded text-blue-500 font-medium hover:bg-blue-50 transition"
             >
-              {t("nav_signin")}
+              Sign Up
             </Link>
           )}
         </div>

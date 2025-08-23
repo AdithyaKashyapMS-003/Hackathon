@@ -7,18 +7,30 @@ function RentalUpload() {
     location: "",
     pricePerDay: "",
     image: null,
+    certificate: null,
   });
   const [imagePreview, setImagePreview] = useState(null);
+  const [certificatePreview, setCertificatePreview] = useState(null);
+
   const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
-    if (e.target.type === "file") {
-      setFormData({ ...formData, image: e.target.files[0] });
-      setImagePreview(URL.createObjectURL(e.target.files[0]));
-    } else {
-      setFormData({ ...formData, [e.target.name]: e.target.value });
+  if (e.target.type === "file") {
+    const file = e.target.files[0];
+
+    if (e.target.name === "image") {
+      setFormData({ ...formData, image: file });
+      setImagePreview(URL.createObjectURL(file));
+    } else if (e.target.name === "certificate") {
+      setFormData({ ...formData, certificate: file });
+      setCertificatePreview(URL.createObjectURL(file));
     }
-  };
+
+  } else {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  }
+};
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,6 +41,7 @@ function RentalUpload() {
     data.append("location", formData.location);
     data.append("pricePerDay", formData.pricePerDay);
     data.append("image", formData.image);
+    data.append("certificate", formData.certificate);
 
     try {
       const res = await fetch("http://localhost:3000/api/equipment/upload", {
@@ -44,6 +57,7 @@ function RentalUpload() {
           location: "",
           pricePerDay: "",
           image: null,
+          certificate: null,
         });
         setImagePreview(null);
       } else {
@@ -105,6 +119,21 @@ function RentalUpload() {
           min="1"
           required
         />
+        <label className="block mb-2 font-medium">Certificate Image</label>
+        <input
+          type="file"
+          accept="image/*"
+          className="w-full mb-4"
+          onChange={handleChange}
+          required
+        />
+        {certificatePreview && (
+          <img
+            src={certificatePreview}
+            alt="certificatePreview"
+            className="mb-4 w-32 h-32 object-cover rounded"
+          />
+        )}
         <label className="block mb-2 font-medium">Equipment Image</label>
         <input
           type="file"
@@ -119,6 +148,8 @@ function RentalUpload() {
             alt="Preview"
             className="mb-4 w-32 h-32 object-cover rounded"
           />
+          
+          
         )}
         <button
           type="submit"

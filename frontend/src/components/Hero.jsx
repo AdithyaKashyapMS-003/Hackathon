@@ -29,7 +29,14 @@ function Hero() {
             </div>
           </div>
 
-          <div className="hidden lg:block lg:w-1/2"></div>
+          {/* Right Side Image */}
+          <div className="hidden lg:block lg:w-1/2">
+            <img
+              src="/assets/image.png" // 🔹 change path to your actual image
+              alt="Farming illustration"
+              className="w-full h-auto rounded-xl shadow-lg"
+            />
+          </div>
         </div>
       </div>
     </section>

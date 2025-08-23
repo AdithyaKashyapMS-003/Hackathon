@@ -22,6 +22,7 @@ let equipments = [];
 router.post("/upload", upload.single("image"), (req, res) => {
   const { name, description, location, pricePerDay } = req.body;
   const imageUrl = req.file ? `/uploads/${req.file.filename}` : "";
+  const certificateUrl = req.file ? `/uploads/${req.file.filename}` : "";
   const equipment = {
     _id: Date.now().toString(),
     name,
