@@ -1,17 +1,50 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 function App() {
+  // Initialize the translation hook
+  const { t, i18n } = useTranslation();
+
+  // Function to handle language changes
+  const handleLanguageChange = (e) => {
+    i18n.changeLanguage(e.target.value);
+  };
+
   return (
     <div className="min-h-screen bg-white">
       {/* Navbar */}
       <nav className="flex justify-between items-center p-6 shadow-sm">
         <div className="text-xl font-bold">AgriGrow</div>
-        <ul className="flex space-x-6 text-gray-700 font-medium">
-          <li className="hover:text-green-600 cursor-pointer">Home</li>
-          <li className="hover:text-green-600 cursor-pointer">Solutions</li>
-          <li className="hover:text-green-600 cursor-pointer">Guides</li>
-          <li className="hover:text-green-600 cursor-pointer">Community</li>
-          <li className="hover:text-green-600 cursor-pointer">Help</li>
+        <ul className="flex items-center space-x-6 text-gray-700 font-medium">
+          <li className="hover:text-green-600 cursor-pointer">
+            {t("nav_home")}
+          </li>
+          <li className="hover:text-green-600 cursor-pointer">
+            {t("nav_solutions")}
+          </li>
+          <li className="hover:text-green-600 cursor-pointer">
+            {t("nav_guides")}
+          </li>
+          <li className="hover:text-green-600 cursor-pointer">
+            {t("nav_community")}
+          </li>
+          <li className="hover:text-green-600 cursor-pointer">
+            {t("nav_help")}
+          </li>
+          <li>
+            {/* Language Selector Dropdown */}
+            <select
+              onChange={handleLanguageChange}
+              value={i18n.language}
+              className="bg-gray-100 border-2 border-gray-300 rounded-md p-1 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-green-500"
+            >
+              <option value="en">English</option>
+              <option value="hi">हिन्दी</option>
+              <option value="kn">ಕನ್ನಡ</option>
+              <option value="te">తెలుగు</option>
+              <option value="ta">தமிழ்</option>
+            </select>
+          </li>
         </ul>
       </nav>
 
@@ -19,16 +52,12 @@ function App() {
       <section className="flex flex-col md:flex-row items-center justify-between px-10 py-20">
         <div className="md:w-1/2 space-y-6">
           <h1 className="text-5xl font-bold text-gray-900 leading-tight">
-            Farming Made Simple
+            {t("hero_title")}
           </h1>
           <h2 className="text-2xl font-semibold text-gray-700">
-            One place for all your farming problems
+            {t("hero_subtitle")}
           </h2>
-          <p className="text-gray-600 text-lg">
-            AgriGrow helps farmers find solutions for crop health, market prices, 
-            and weather updates — all in one place. No complex terms, just 
-            simple and useful guidance.
-          </p>
+          <p className="text-gray-600 text-lg">{t("hero_description")}</p>
         </div>
 
         {/* Replace with your own image/illustration */}
@@ -44,43 +73,33 @@ function App() {
       {/* Explore Section */}
       <section className="px-10 py-16 bg-gray-50">
         <h2 className="text-3xl font-bold text-gray-900 mb-8">
-          Explore AgriGrow
+          {t("explore_title")}
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
           <div className="bg-green-100 p-6 rounded-xl shadow hover:shadow-lg transition">
-            <h3 className="text-xl font-semibold">Crop Care</h3>
-            <p className="text-gray-600 text-sm mt-2">
-              Tips and solutions for crop issues.
-            </p>
+            <h3 className="text-xl font-semibold">{t("card1_title")}</h3>
+            <p className="text-gray-600 text-sm mt-2">{t("card1_desc")}</p>
           </div>
 
           <div className="bg-yellow-100 p-6 rounded-xl shadow hover:shadow-lg transition">
-            <h3 className="text-xl font-semibold">Market Prices</h3>
-            <p className="text-gray-600 text-sm mt-2">
-              Stay updated on mandi prices.
-            </p>
+            <h3 className="text-xl font-semibold">{t("card2_title")}</h3>
+            <p className="text-gray-600 text-sm mt-2">{t("card2_desc")}</p>
           </div>
 
           <div className="bg-blue-100 p-6 rounded-xl shadow hover:shadow-lg transition">
-            <h3 className="text-xl font-semibold">Weather Updates</h3>
-            <p className="text-gray-600 text-sm mt-2">
-              Get real-time weather info.
-            </p>
+            <h3 className="text-xl font-semibold">{t("card3_title")}</h3>
+            <p className="text-gray-600 text-sm mt-2">{t("card3_desc")}</p>
           </div>
 
           <div className="bg-purple-100 p-6 rounded-xl shadow hover:shadow-lg transition">
-            <h3 className="text-xl font-semibold">Govt Schemes</h3>
-            <p className="text-gray-600 text-sm mt-2">
-              Know about subsidies and benefits.
-            </p>
+            <h3 className="text-xl font-semibold">{t("card4_title")}</h3>
+            <p className="text-gray-600 text-sm mt-2">{t("card4_desc")}</p>
           </div>
 
           <div className="bg-red-100 p-6 rounded-xl shadow hover:shadow-lg transition">
-            <h3 className="text-xl font-semibold">Community</h3>
-            <p className="text-gray-600 text-sm mt-2">
-              Ask & learn from fellow farmers.
-            </p>
+            <h3 className="text-xl font-semibold">{t("card5_title")}</h3>
+            <p className="text-gray-600 text-sm mt-2">{t("card5_desc")}</p>
           </div>
         </div>
       </section>
@@ -89,13 +108,10 @@ function App() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
           {/* Left side text */}
           <div className="text-gray-600 text-sm text-center md:text-left mb-4 md:mb-0">
-            <p>AgriGrow © {new Date().getFullYear()}. All rights reserved.</p>
+            <p>{t("footer_copyright", { year: new Date().getFullYear() })}</p>
             <p>
-              Reproduction of materials is not permitted. For queries, contact{" "}
-              <a
-                href="mailto:info@agrigrow.com"
-                className="text-blue-600"
-              >
+              {t("footer_permission")}
+              <a href="mailto:info@agrigrow.com" className="text-blue-600">
                 info@agrigrow.com
               </a>
             </p>
@@ -125,5 +141,3 @@ function App() {
 }
 
 export default App;
-
-
