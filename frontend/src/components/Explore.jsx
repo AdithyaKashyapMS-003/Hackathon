@@ -19,9 +19,9 @@ function Explore() {
       link: "#",
     },
     {
-      title: "Govt Schemes",
-      desc: "Explore government subsidies, benefits, and eligibility criteria.",
-      link: "#",
+      title: "Market Place",
+      desc: "A Marketplace for farmers to rent and use products.",
+      link: "/market-place",
     },
     {
       title: "Community",

@@ -4,11 +4,10 @@ function Rent() {
   const [equipments, setEquipments] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch equipment list from backend API
   useEffect(() => {
     async function fetchEquipments() {
       try {
-        const res = await fetch("http://localhost:3000/api/equipment"); // Adjust endpoint as per your backend
+        const res = await fetch("http://localhost:3000/api/equipment");
         const data = await res.json();
         setEquipments(data);
       } catch (err) {
@@ -20,30 +19,54 @@ function Rent() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-green-50 py-10">
-      <h1 className="text-3xl font-bold text-center text-green-700 mb-8">
+    <div className="min-h-screen bg-gray-50 pt-24 sm:pt-32 pb-12">
+      <h1 className="text-3xl font-bold text-center text-gray-800 mb-12">
         Available Equipment for Rent
       </h1>
+
       {loading ? (
-        <div className="text-center text-gray-600">Loading...</div>
+        <div className="text-center text-gray-500">Loading...</div>
       ) : equipments.length === 0 ? (
-        <div className="text-center text-gray-600">No equipment available for rent.</div>
+        <div className="text-center text-gray-500">No equipment available for rent.</div>
       ) : (
-        <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {equipments.map((item) => (
-            <div key={item._id} className="bg-white rounded shadow p-4 flex flex-col items-center">
+            <div
+              key={item._id}
+              className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden flex flex-col"
+            >
+              {/* Equipment Image */}
               <img
-                src={item.imageUrl}
+                src={`http://localhost:3000${item.imageUrl}`}
                 alt={item.name}
-                className="w-40 h-40 object-cover rounded mb-4"
+                className="w-full h-48 object-cover"
               />
-              <h2 className="text-xl font-semibold mb-2">{item.name}</h2>
-              <p className="text-gray-700 mb-2">{item.description}</p>
-              <p className="text-gray-600 mb-2">Location: {item.location}</p>
-              <p className="text-green-700 font-bold mb-4">₹{item.pricePerDay} / day</p>
-              <button className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">
-                Rent Now
-              </button>
+
+              {/* Card Content */}
+              <div className="p-4 flex flex-col flex-1">
+                <h2 className="text-lg font-semibold text-gray-800 mb-2">{item.name}</h2>
+                <p className="text-gray-600 text-sm mb-2 line-clamp-2">{item.description}</p>
+                <p className="text-gray-500 text-sm mb-1">Location: {item.location}</p>
+                <p className="text-green-700 font-bold text-lg mb-4">₹{item.pricePerDay} / day</p>
+
+                <button className="mt-auto bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition">
+                  Rent Now
+                </button>
+
+                {/* Certificate Image with Verified Badge */}
+                {item.certificateUrl && (
+                  <div className="mt-4 relative flex justify-center items-center">
+                    <img
+                      src={`http://localhost:3000${item.certificateUrl}`}
+                      alt={`${item.name} Certificate`}
+                      className="w-28 h-28 object-cover rounded border border-gray-200"
+                    />
+                    <span className="absolute bottom-1 right-1 bg-green-600 text-white text-xs px-2 py-1 rounded-full shadow flex items-center">
+                      ✓ Verified
+                    </span>
+                  </div>
+                )}
+              </div>
             </div>
           ))}
         </div>

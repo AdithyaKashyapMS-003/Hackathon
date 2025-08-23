@@ -34,46 +34,75 @@ function SignUp() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50">
-      <form onSubmit={handleSubmit} className="bg-white p-8 rounded shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-green-700">Sign Up</h2>
-        {message && (
-          <div className="mb-4 text-center text-sm text-red-600">{message}</div>
-        )}
-        <label className="block mb-2 font-medium">Name</label>
-        <input
-          type="text"
-          className="w-full mb-4 px-3 py-2 border rounded"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-        <label className="block mb-2 font-medium">Email</label>
-        <input
-          type="email"
-          className="w-full mb-4 px-3 py-2 border rounded"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <label className="block mb-2 font-medium">Password</label>
-        <input
-          type="password"
-          className="w-full mb-6 px-3 py-2 border rounded"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button
-          type="submit"
-          className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition"
-        >
-          Sign Up
-        </button>
-        <p className="mt-4 text-sm text-center">
-          Already have an account? <a href="/signin" className="text-blue-600 underline">Sign In</a>
-        </p>
-      </form>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 font-sans antialiased py-20 px-4">
+      <div className="w-full max-w-md">
+        <div className="p-10 rounded-2xl shadow-xl bg-white border border-gray-100">
+          <h2 className="text-4xl font-bold text-gray-800 mb-8 text-center tracking-tight">
+            Sign Up
+          </h2>
+
+          {message && (
+            <div
+              className={`p-4 rounded-lg text-sm text-center mb-6 font-medium ${
+                message.includes("successful")
+                  ? "bg-green-100 text-green-700"
+                  : "bg-red-100 text-red-700"
+              }`}
+            >
+              {message}
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label className="block text-gray-600 font-semibold mb-2">Full Name</label>
+              <input
+                type="text"
+                className="w-full px-5 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-gray-400 transition-colors duration-200"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-gray-600 font-semibold mb-2">Email Address</label>
+              <input
+                type="email"
+                className="w-full px-5 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-gray-400 transition-colors duration-200"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-gray-600 font-semibold mb-2">Password</label>
+              <input
+                type="password"
+                className="w-full px-5 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-gray-400 transition-colors duration-200"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="w-full bg-black text-white font-bold text-lg py-4 rounded-xl hover:bg-gray-800 transition-colors duration-200 shadow-lg transform hover:scale-105"
+            >
+              Create Account
+            </button>
+          </form>
+
+          <p className="mt-8 text-sm text-center text-gray-500">
+            Already have an account?{" "}
+            <a href="/signin" className="text-black font-bold hover:underline">
+              Sign In
+            </a>
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
