@@ -10,14 +10,7 @@
     "preview": "vite preview",
     "tailwind:init": "tailwind init --postcss"
   },
-  "dependencies": {
-    "i18next": "^25.4.0",
-    "i18next-browser-languagedetector": "^8.2.0",
-    "i18next-http-backend": "^3.0.2",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
-    "react-i18next": "^15.7.1"
-  },
+
   "devDependencies": {
     "@eslint/js": "^9.33.0",
     "@types/node": "^24.3.0",
@@ -32,5 +25,14 @@
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.17",
     "vite": "^7.1.2"
+  },
+  "dependencies": {
+    "react-router-dom": "^6.30.1",
+    "i18next": "^25.4.0",
+    "i18next-browser-languagedetector": "^8.2.0",
+    "i18next-http-backend": "^3.0.2",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-i18next": "^15.7.1"
   }
 }
