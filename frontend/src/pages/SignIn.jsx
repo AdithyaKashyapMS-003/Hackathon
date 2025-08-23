@@ -1,10 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-<<<<<<< HEAD
-import { useAuth } from "../context/AuthContext";
-import { useTranslation } from "react-i18next"; // 1. Import hook
-=======
->>>>>>> 5fd8c80001a69f481c2fc40e25aa9368546ce247
 
 function Signin() {
   const { t } = useTranslation(); // 2. Initialize hook
