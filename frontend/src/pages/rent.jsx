@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function Rent() {
+function rent() {
   const [equipments, setEquipments] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -75,4 +75,4 @@ function Rent() {
   );
 }
 
-export default Rent;
+export default rent;
