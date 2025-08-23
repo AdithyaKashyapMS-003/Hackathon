@@ -1,38 +1,101 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Hero() {
   return (
-    <section className="bg-white py-16 sm:py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-24">
-          {/* Text Content */}
-          <div className="lg:w-1/2 text-center lg:text-left">
-            <h1 className="text-5xl sm:text-6xl font-extrabold text-gray-900 leading-tight">
-              Farming <br className="hidden sm:inline" /> Made Simple
-            </h1>
-            <p className="mt-6 text-xl text-gray-600 max-w-2xl mx-auto lg:mx-0">
-              One place for all your farming problems.
-            </p>
-            <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto lg:mx-0">
-              AgriGrow helps farmers find solutions for crop health, market prices, and weather updates—all in one place. No complex terms, just simple and useful guidance.
-            </p>
-            <div className="mt-8">
-              <button className="bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-blue-700 transition duration-300">
-                Start your journey
-              </button>
-            </div>
-          </div>
+    <section className="relative py-20 overflow-hidden">
+      {/* Animated Background */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        {/* Gradient Layer */}
+        <div className="absolute inset-0 bg-gradient-to-br from-green-100 via-green-50 to-white"></div>
 
-          {/* Right Side Image */}
-          <div className="hidden lg:block lg:w-1/2">
-            <img
-              src="/assets/image.png" // 🔹 change path to your actual image
-              alt="Farming illustration"
-              className="w-full h-auto rounded-xl shadow-lg"
-            />
-          </div>
+        {/* Wavy Animated Grass */}
+        <div className="absolute bottom-0 left-0 w-full h-64 overflow-hidden">
+          <svg
+            className="absolute bottom-0 w-[200%] h-full animate-wave-slow opacity-70"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1440 320"
+            preserveAspectRatio="none"
+          >
+            <path
+              fill="#86efac"
+              fillOpacity="0.6"
+              d="M0,256L40,245.3C80,235,160,213,240,202.7C320,192,400,192,480,197.3C560,203,640,213,720,224C800,235,880,245,960,229.3C1040,213,1120,171,1200,165.3C1280,160,1360,192,1400,208L1440,224L1440,320L0,320Z"
+            ></path>
+          </svg>
+          <svg
+            className="absolute bottom-0 w-[200%] h-full animate-wave-fast opacity-60"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1440 320"
+            preserveAspectRatio="none"
+          >
+            <path
+              fill="#4ade80"
+              fillOpacity="0.5"
+              d="M0,288L60,272C120,256,240,224,360,202.7C480,181,600,171,720,165.3C840,160,960,160,1080,176C1200,192,1320,224,1380,240L1440,256L1440,320L0,320Z"
+            ></path>
+          </svg>
         </div>
       </div>
+
+      {/* Foreground Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+
+        {/* Left Text Section */}
+        <div className="lg:w-1/2 text-center lg:text-left">
+          <h1 className="text-5xl sm:text-6xl font-extrabold text-gray-900 leading-tight">
+            Farming made <span className="text-green-600">simple</span> 🌱
+          </h1>
+          <p className="mt-6 text-lg sm:text-xl text-gray-600 max-w-xl mx-auto lg:mx-0">
+            All your farming needs in one place — from crop health to market
+            prices, weather forecasts, and government schemes.
+          </p>
+          <p className="mt-4 text-md text-gray-500 max-w-xl mx-auto lg:mx-0">
+            AgriGrow empowers farmers with simple, practical guidance — no jargon,
+            just real solutions that work for you.
+          </p>
+
+          {/* CTA Buttons */}
+          <div className="mt-8 flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+            <Link
+              to="/dashboard"
+              className="px-6 py-3 rounded-full bg-green-600 text-white font-semibold shadow-md hover:bg-green-700 transition"
+            >
+              Start your journey
+            </Link>
+            <Link
+              to="/explore"
+              className="px-6 py-3 rounded-full border border-gray-300 text-gray-800 font-semibold hover:bg-gray-100 transition"
+            >
+              Explore features
+            </Link>
+          </div>
+        </div>
+
+        {/* Right Image Section */}
+        <div className="lg:w-1/2 flex justify-center">
+          <img
+            src="https://media.tenor.com/XGWjg0om0fwAAAAi/kws-kws-tractor.gif"
+            className="w-full max-w-md rounded-2xl shadow-lg"
+          />
+        </div>
+      </div>
+gif
+      {/* Tailwind CSS Animations */}
+      <style>
+        {`
+          @keyframes wave-slow {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          @keyframes wave-fast {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          .animate-wave-slow { animation: wave-slow 20s linear infinite; }
+          .animate-wave-fast { animation: wave-fast 10s linear infinite; }
+        `}
+      </style>
     </section>
   );
 }
