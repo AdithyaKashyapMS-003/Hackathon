@@ -13,29 +13,28 @@ function RentalUpload() {
   });
   const [imagePreview, setImagePreview] = useState(null);
   const [certificatePreview, setCertificatePreview] = useState(null);
-
   const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
-    if (e.target.type === "file") {
-      const file = e.target.files[0];
-      if (!file) return;
-
-      if (e.target.name === "image") {
+    const { name, type, files, value } = e.target;
+    if (type === "file") {
+      const file = files[0];
+      if (name === "image") {
         setFormData({ ...formData, image: file });
         setImagePreview(URL.createObjectURL(file));
-      } else if (e.target.name === "certificate") {
+      } else if (name === "certificate") {
         setFormData({ ...formData, certificate: file });
         setCertificatePreview(URL.createObjectURL(file));
       }
     } else {
-      setFormData({ ...formData, [e.target.name]: e.target.value });
+      setFormData({ ...formData, [name]: value });
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage("");
+
     const data = new FormData();
     data.append("name", formData.name);
     data.append("description", formData.description);
@@ -72,107 +71,125 @@ function RentalUpload() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-green-50 pt-24">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white p-8 rounded shadow-md w-full max-w-md"
-        encType="multipart/form-data"
-      >
-        <h2 className="text-2xl font-bold mb-6 text-green-700 text-center">
-          {t("upload_title")}
+    <div className="min-h-screen bg-gray-50 pt-24 sm:pt-32 flex justify-center items-start">
+      <div className="w-full max-w-2xl p-8 bg-white rounded-2xl shadow-lg border border-gray-200">
+        <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">
+          Upload Agricultural Equipment
         </h2>
+
         {message && (
-          <div className="mb-4 text-center text-green-700 font-semibold">
-            {t(message)}
+          <div className="mb-4 text-center text-green-600 font-semibold">
+            {message}
           </div>
         )}
-        <label className="block mb-2 font-medium">
-          {t("upload_label_name")}
-        </label>
-        <input
-          type="text"
-          name="name"
-          className="w-full mb-4 px-3 py-2 border rounded"
-          value={formData.name}
-          onChange={handleChange}
-          required
-        />
-        <label className="block mb-2 font-medium">
-          {t("upload_label_desc")}
-        </label>
-        <textarea
-          name="description"
-          className="w-full mb-4 px-3 py-2 border rounded"
-          value={formData.description}
-          onChange={handleChange}
-          required
-        />
-        <label className="block mb-2 font-medium">
-          {t("upload_label_location")}
-        </label>
-        <input
-          type="text"
-          name="location"
-          className="w-full mb-4 px-3 py-2 border rounded"
-          value={formData.location}
-          onChange={handleChange}
-          required
-        />
-        <label className="block mb-2 font-medium">
-          {t("upload_label_price")}
-        </label>
-        <input
-          type="number"
-          name="pricePerDay"
-          className="w-full mb-4 px-3 py-2 border rounded"
-          value={formData.pricePerDay}
-          onChange={handleChange}
-          min="1"
-          required
-        />
-        <label className="block mb-2 font-medium">
-          {t("upload_label_cert")}
-        </label>
-        <input
-          type="file"
-          name="certificate" // Added name attribute
-          accept="image/*"
-          className="w-full mb-4"
-          onChange={handleChange}
-          required
-        />
-        {certificatePreview && (
-          <img
-            src={certificatePreview}
-            alt="certificatePreview"
-            className="mb-4 w-32 h-32 object-cover rounded"
-          />
-        )}
-        <label className="block mb-2 font-medium">
-          {t("upload_label_image")}
-        </label>
-        <input
-          type="file"
-          name="image" // Added name attribute
-          accept="image/*"
-          className="w-full mb-4"
-          onChange={handleChange}
-          required
-        />
-        {imagePreview && (
-          <img
-            src={imagePreview}
-            alt="Preview"
-            className="mb-4 w-32 h-32 object-cover rounded"
-          />
-        )}
-        <button
-          type="submit"
-          className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition"
-        >
-          {t("upload_button")}
-        </button>
-      </form>
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">
+              Equipment Name
+            </label>
+            <input
+              type="text"
+              name="name"
+              className="w-full border border-gray-300 p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">
+              Description
+            </label>
+            <textarea
+              name="description"
+              className="w-full border border-gray-300 p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400"
+              value={formData.description}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">
+              Location
+            </label>
+            <input
+              type="text"
+              name="location"
+              className="w-full border border-gray-300 p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400"
+              value={formData.location}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">
+              Price Per Day (₹)
+            </label>
+            <input
+              type="number"
+              name="pricePerDay"
+              className="w-full border border-gray-300 p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400"
+              value={formData.pricePerDay}
+              onChange={handleChange}
+              min="1"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">
+              Certificate Image
+            </label>
+            <input
+              type="file"
+              name="certificate"
+              accept="image/*"
+              onChange={handleChange}
+              className="mb-2"
+              required
+            />
+            {certificatePreview && (
+              <img
+                src={certificatePreview}
+                alt="Certificate Preview"
+                className="w-32 h-32 object-cover rounded-xl border border-gray-200 shadow-sm"
+              />
+            )}
+          </div>
+
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">
+              Equipment Image
+            </label>
+            <input
+              type="file"
+              name="image"
+              accept="image/*"
+              onChange={handleChange}
+              className="mb-2"
+              required
+            />
+            {imagePreview && (
+              <img
+                src={imagePreview}
+                alt="Equipment Preview"
+                className="w-32 h-32 object-cover rounded-xl border border-gray-200 shadow-sm"
+              />
+            )}
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-green-600 text-white font-bold py-3 rounded-xl hover:bg-green-700 transition transform duration-200 hover:scale-105"
+          >
+            Upload Equipment
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

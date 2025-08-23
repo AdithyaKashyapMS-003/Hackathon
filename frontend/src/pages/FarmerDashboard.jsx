@@ -59,7 +59,7 @@ function FarmerDashboard() {
   };
 
   return (
-    <div className="bg-gray-100 font-sans min-h-screen antialiased">
+    <div className="bg-gray-100 font-sans min-h-screen antialiased pt-24 sm:pt-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Header */}
         <div className="text-center mb-16">
@@ -75,70 +75,65 @@ function FarmerDashboard() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-200 transform transition-transform duration-300 hover:scale-105">
             <h2 className="text-sm text-gray-500 uppercase tracking-wider font-bold mb-2">
-              {t("db_scheme1_title")}
+              PM-KISAN Samman Nidhi
             </h2>
-            <p className="text-xl font-bold text-green-600">
-              {t("db_scheme1_benefit")}
-            </p>
-            <p className="text-sm text-gray-500 mt-1">{t("db_scheme1_desc")}</p>
+            <p className="text-xl font-bold text-green-600">₹6,000 yearly</p>
+            <p className="text-sm text-gray-500 mt-1">Direct support in 3 installments</p>
             <a
               href="https://pmkisan.gov.in/"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-4 inline-block text-white bg-green-600 px-4 py-2 rounded-xl hover:bg-green-700 transition"
             >
-              {t("db_apply_now")}
+              Apply Now
             </a>
           </div>
+
           <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-200 transform transition-transform duration-300 hover:scale-105">
             <h2 className="text-sm text-gray-500 uppercase tracking-wider font-bold mb-2">
-              {t("db_scheme2_title")}
+              Kisan Credit Card (KCC)
             </h2>
-            <p className="text-xl font-bold text-blue-600">
-              {t("db_scheme2_benefit")}
-            </p>
-            <p className="text-sm text-gray-500 mt-1">{t("db_scheme2_desc")}</p>
+            <p className="text-xl font-bold text-blue-600">Low-interest loans</p>
+            <p className="text-sm text-gray-500 mt-1">Get up to ₹3 lakhs for crops</p>
             <a
               href="https://www.kisancreditcard.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-4 inline-block text-white bg-blue-600 px-4 py-2 rounded-xl hover:bg-blue-700 transition"
             >
-              {t("db_apply_now")}
+              Apply Now
             </a>
           </div>
+
           <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-200 transform transition-transform duration-300 hover:scale-105">
             <h2 className="text-sm text-gray-500 uppercase tracking-wider font-bold mb-2">
-              {t("db_scheme3_title")}
+              PM Fasal Bima Yojana
             </h2>
-            <p className="text-xl font-bold text-orange-600">
-              {t("db_scheme3_benefit")}
-            </p>
-            <p className="text-sm text-gray-500 mt-1">{t("db_scheme3_desc")}</p>
+            <p className="text-xl font-bold text-orange-600">Crop insurance</p>
+            <p className="text-sm text-gray-500 mt-1">Protect your harvest with low premiums</p>
             <a
               href="https://pmfby.gov.in/"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-4 inline-block text-white bg-orange-600 px-4 py-2 rounded-xl hover:bg-orange-700 transition"
             >
-              {t("db_apply_now")}
+              Apply Now
             </a>
           </div>
+
           <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-200 transform transition-transform duration-300 hover:scale-105">
             <h2 className="text-sm text-gray-500 uppercase tracking-wider font-bold mb-2">
-              {t("db_scheme4_title")}
+              Soil Health Card Scheme
             </h2>
-            <p className="text-xl font-bold text-gray-800">
-              {t("db_scheme4_benefit")}
-            </p>
-            <p className="text-sm text-gray-500 mt-1">{t("db_scheme4_desc")}</p>
+            <p className="text-xl font-bold text-gray-800">Free soil testing</p>
+            <p className="text-sm text-gray-500 mt-1">Unlock better yields with data</p>
             <a
               href="https://soilhealth.dac.gov.in/"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-4 inline-block text-white bg-gray-800 px-4 py-2 rounded-xl hover:bg-gray-900 transition"
             >
-              {t("db_apply_now")}
+              Apply Now
             </a>
           </div>
         </div>
@@ -259,6 +254,7 @@ function FarmerDashboard() {
                 {t("db_form_submit_button")}
               </button>
             </form>
+
             {estimatedIncome !== null && (
               <div className="mt-8 p-4 bg-green-50 rounded-xl text-center">
                 <p className="text-xl text-green-700 font-bold">
@@ -267,6 +263,7 @@ function FarmerDashboard() {
                 </p>
               </div>
             )}
+
             {message && (
               <div className="mt-4 p-4 text-red-600 text-center">
                 {t(message)}

@@ -2,41 +2,34 @@ import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-// The component should be defined only once.
-const Explore = () => {
-  const { t } = useTranslation();
-
-  // Wrap your array definition in useMemo
-  const features = useMemo(
-    () => [
-      {
-        title: t("card1_title"),
-        desc: t("card1_desc"),
-        link: "/solutions",
-      },
-      {
-        title: t("card2_title"),
-        desc: t("card2_desc"),
-        link: "/ai-chat",
-      },
-      {
-        title: t("card3_title"),
-        desc: t("card3_desc"),
-        link: "/guides",
-      },
-      {
-        title: t("card4_title"),
-        desc: t("card4_desc"),
-        link: "/community",
-      },
-      {
-        title: t("card5_title"),
-        desc: t("card5_desc"),
-        link: "/help",
-      },
-    ],
-    [t]
-  ); // Add 't' as a dependency to the hook
+function Explore() {
+  const features = [
+    {
+      title: "Farmer Financial Health Dashboard",
+      desc: "Get a complete overview of your farm's income, expenses, and profit.",
+      link: "/dashboard",
+    },
+    {
+      title: "AI Chat Bot",
+      desc: "Interact with AI to get personalized farming advice instantly.",
+      link: "/ai-chat",
+    },
+    {
+      title: "Weather Updates",
+      desc: "Get real-time, hyper-local weather information to plan your day.",
+      link: "#",
+    },
+    {
+      title: "Market Place",
+      desc: "A Marketplace for farmers to rent and use products.",
+      link: "/market-place",
+    },
+    {
+      title: "Community",
+      desc: "Ask and learn from a network of fellow farmers and experts.",
+      link: "/community",
+    },
+  ];
 
   return (
     <section className="bg-white py-16 sm:py-24">
