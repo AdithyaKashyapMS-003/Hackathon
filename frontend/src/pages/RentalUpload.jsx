@@ -42,7 +42,7 @@ function RentalUpload() {
     data.append("certificate", formData.certificate);
 
     try {
-      const res = await fetch("http://localhost:3000/api/equipment/upload", {
+      const res = await fetch("https://agrigrow-znib.onrender.com/api/equipment/upload", {
         method: "POST",
         body: data,
       });
