@@ -17,8 +17,11 @@ const app = express();
 // ✅ Middleware
 app.use(
   cors({
-    origin: "http://localhost:5173", // frontend URL
-    credentials: true,
+    origin: [
+      "http://localhost:5173", // local dev
+      "https://frontend-btwp.onrender.com"
+    ],
+    credentials: true, // if using cookies/session
   })
 );
 app.use(express.json());
