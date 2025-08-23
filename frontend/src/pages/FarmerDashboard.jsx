@@ -16,7 +16,7 @@ function FarmerDashboard() {
 
   useEffect(() => {
     // Fetch crop types from backend
-    fetch("http://localhost:3000/api/healthdashboard/crop-types")
+    fetch("https://agrigrow-znib.onrender.com/api/healthdashboard/crop-types")
       .then((res) => res.json())
       .then(setCropTypes)
       .catch(console.error);
@@ -32,7 +32,7 @@ function FarmerDashboard() {
     setEstimatedIncome(null);
     try {
       const res = await fetch(
-        "http://localhost:3000/api/healthdashboard/farmer-log",
+        "https://agrigrow-znib.onrender.com/api/healthdashboard/farmer-log",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
