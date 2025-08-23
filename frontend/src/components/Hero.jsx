@@ -2,26 +2,35 @@ import React from "react";
 
 function Hero() {
   return (
-    <section className="flex flex-col md:flex-row items-center justify-between px-10 py-20">
-      <div className="md:w-1/2 space-y-6">
-        <h1 className="text-5xl font-bold text-gray-900 leading-tight">
-          Farming Made Simple
-        </h1>
-        <h2 className="text-2xl font-semibold text-gray-700">
-          One place for all your farming problems
-        </h2>
-        <p className="text-gray-600 text-lg">
-          AgriGrow helps farmers find solutions for crop health, market prices, and weather updates — all in one place. No complex terms, just simple and useful guidance.
-        </p>
-      </div>
-      <div className="md:w-1/2 flex justify-center mt-10 md:mt-0">
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/2909/2909763.png"
-          alt="Farmer illustration"
-          className="w-80"
-        />
+    <section className="bg-white py-16 sm:py-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-24">
+          {/* Text Content */}
+          <div className="lg:w-1/2 text-center lg:text-left">
+            <h1 className="text-5xl sm:text-6xl font-extrabold text-gray-900 leading-tight">
+              Farming <br className="hidden sm:inline" /> Made Simple
+            </h1>
+            <p className="mt-6 text-xl text-gray-600 max-w-2xl mx-auto lg:mx-0">
+              One place for all your farming problems.
+            </p>
+            <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto lg:mx-0">
+              AgriGrow helps farmers find solutions for crop health, market prices, and weather updates—all in one place. No complex terms, just simple and useful guidance.
+            </p>
+            <div className="mt-8">
+              <button className="bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-blue-700 transition duration-300">
+                Start your journey
+              </button>
+            </div>
+          </div>
+
+         
+          <div className="hidden lg:block lg:w-1/2">
+           
+          </div>
+        </div>
       </div>
     </section>
   );
 }
+
 export default Hero;

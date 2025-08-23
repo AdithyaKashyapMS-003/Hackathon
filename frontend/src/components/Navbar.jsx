@@ -1,64 +1,48 @@
-import React, { useState } from "react";
+// Navbar.jsx
+import React from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 function Navbar() {
-  const [showMenu, setShowMenu] = useState(false);
-
-  const menuItems = [
-    { name: "Home", link: "/" },
-    { name: "Solutions", link: "/solutions" },
-    { name: "Guides", link: "/guides" },
-    { name: "Community", link: "/community" },
-    { name: "Help", link: "/help" },
-    { name: "Dashboard", link: "/dashboard" },
-    { name: "Market Prices", link: "/market-prices" },
-  ];
+  const { isSignedIn } = useAuth();
 
   return (
-    <nav className="flex justify-between items-center p-6 shadow-sm relative">
-      {/* Logo with hover menu */}
-      <div
-        className="relative inline-block"
-        onMouseEnter={() => setShowMenu(true)}
-        onMouseLeave={() => setShowMenu(false)}
-      >
-        <span className="text-xl font-bold cursor-pointer">AgriGrow</span>
-        {showMenu && (
-          <div className="absolute left-0 mt-2 w-48 bg-white border rounded shadow-lg z-50">
-            <ul className="py-2">
-              {menuItems.map((item) => (
-                <li key={item.link}>
-                  <Link
-                    to={item.link}
-                    className="block px-4 py-2 text-gray-700 hover:bg-green-100"
-                    onClick={() => setShowMenu(false)}
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+    <nav className="fixed top-0 left-0 w-full z-50 bg-white border-b border-gray-200">
+      <div className="flex justify-between items-center py-4 px-4 sm:px-6 lg:px-8">
+        
+        {/* Logo */}
+        <Link to="/" className="text-2xl font-bold text-gray-900 leading-none cursor-pointer">
+          AgriGrow
+        </Link>
+
+        {/* Main Navbar Links */}
+        <div className="hidden sm:flex items-center space-x-6">
+          <Link to="/solutions" className="text-gray-600 font-medium hover:text-gray-900">Solutions</Link>
+          <Link to="/guides" className="text-gray-600 font-medium hover:text-gray-900">Guides</Link>
+          <Link to="/community" className="text-gray-600 font-medium hover:text-gray-900">Community</Link>
+          <Link to="/help" className="text-gray-600 font-medium hover:text-gray-900">Help</Link>
+        </div>
+
+        {/* Right-side */}
+        <div className="flex items-center space-x-4 sm:space-x-6">
+          <Link to="/dashboard" className="hidden sm:inline-block text-gray-600 font-medium hover:text-gray-900">
+            Dashboard
+          </Link>
+          <Link to="/market-prices" className="hidden sm:inline-block text-gray-600 font-medium hover:text-gray-900">
+            Market Prices
+          </Link>
+
+          {/* Show Sign In only if not signed in */}
+          {!isSignedIn && (
+            <Link
+              to="/signin"
+              className="py-2 px-4 border border-blue-500 rounded text-blue-500 font-medium hover:bg-blue-50 transition"
+            >
+              Sign In
+            </Link>
+          )}
+        </div>
       </div>
-      {/* Usual navbar links */}
-      <ul className="flex space-x-6 text-gray-700 font-medium">
-        <li>
-          <Link to="/" className="hover:text-green-600 cursor-pointer">Home</Link>
-        </li>
-        <li>
-          <Link to="/solutions" className="hover:text-green-600 cursor-pointer">Solutions</Link>
-        </li>
-        <li>
-          <Link to="/guides" className="hover:text-green-600 cursor-pointer">Guides</Link>
-        </li>
-        <li>
-          <Link to="/community" className="hover:text-green-600 cursor-pointer">Community</Link>
-        </li>
-        <li>
-          <Link to="/help" className="hover:text-green-600 cursor-pointer">Help</Link>
-        </li>
-      </ul>
     </nav>
   );
 }

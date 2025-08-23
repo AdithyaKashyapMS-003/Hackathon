@@ -2,82 +2,90 @@ import React from "react";
 
 function Help() {
   return (
-    <div className="p-8 max-w-3xl mx-auto">
-      <h1 className="text-4xl font-bold mb-6 text-green-700">Help & Support</h1>
-      <p className="text-lg mb-6">
-        Welcome to AgriGrow’s Help Center! Here you’ll find answers to common questions, guidance on using our platform, and resources to help you get the most out of AgriGrow. Whether you’re a new user or a seasoned farmer, we’re here to support you every step of the way.
-      </p>
+    <div className="bg-white py-24 sm:py-32">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-16">
+          <h1 className="text-4xl sm:text-5xl font-semibold text-gray-900 leading-tight">
+            Help and support
+          </h1>
+          <p className="mt-4 text-xl text-gray-600 max-w-2xl">
+            Welcome to AgriGrow's Help Center. Here you’ll find answers to common questions and resources to get the most out of our platform.
+          </p>
+        </div>
 
-      <section className="mb-8">
-        <h2 className="text-2xl font-semibold mb-2">Frequently Asked Questions</h2>
-        <ul className="list-disc ml-6 text-base text-gray-700 space-y-2">
-          <li>
-            <strong>How do I find solutions for my crops?</strong>
-            <br />
-            Use the <span className="font-semibold">Solutions</span> page to explore smart irrigation, crop monitoring, soil health management, and more. Each section provides detailed guidance and tips.
-          </li>
-          <li>
-            <strong>How can I check the latest market prices?</strong>
-            <br />
-            Visit the <span className="font-semibold">Market Prices</span> section under <span className="font-semibold">Explore AgriGrow</span> on the home page for real-time mandi prices and trends.
-          </li>
-          <li>
-            <strong>Where can I get weather updates?</strong>
-            <br />
-            The <span className="font-semibold">Weather Updates</span> card on the home page provides instant access to local weather information.
-          </li>
-          <li>
-            <strong>How do I connect with other farmers?</strong>
-            <br />
-            Join our <span className="font-semibold">Community</span> page to participate in forums, share experiences, and learn from others.
-          </li>
-          <li>
-            <strong>How do I access government schemes?</strong>
-            <br />
-            The <span className="font-semibold">Govt Schemes</span> section lists the latest subsidies, benefits, and eligibility criteria for farmers.
-          </li>
-        </ul>
-      </section>
+        <div className="space-y-16">
+          {/* Section: Frequently Asked Questions */}
+          <div className="border-t border-gray-200 pt-16">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-8">
+              Frequently asked questions
+            </h2>
+            <dl className="divide-y divide-gray-200">
+              <div className="py-6">
+                <dt className="text-lg font-medium text-gray-800 leading-relaxed">
+                  How do I find solutions for my crops?
+                </dt>
+                <dd className="mt-2 text-base text-gray-600 leading-relaxed">
+                  Use the Solutions page to explore smart irrigation, crop monitoring, and more.
+                </dd>
+              </div>
+              <div className="py-6">
+                <dt className="text-lg font-medium text-gray-800 leading-relaxed">
+                  How can I check the latest market prices?
+                </dt>
+                <dd className="mt-2 text-base text-gray-600 leading-relaxed">
+                  Visit the Market Prices section for real-time mandi prices and trends.
+                </dd>
+              </div>
+              <div className="py-6">
+                <dt className="text-lg font-medium text-gray-800 leading-relaxed">
+                  Where can I get weather updates?
+                </dt>
+                <dd className="mt-2 text-base text-gray-600 leading-relaxed">
+                  The Weather Updates card on the home page provides instant access to local weather information.
+                </dd>
+              </div>
+              <div className="py-6">
+                <dt className="text-lg font-medium text-gray-800 leading-relaxed">
+                  How do I connect with other farmers?
+                </dt>
+                <dd className="mt-2 text-base text-gray-600 leading-relaxed">
+                  Join our Community page to participate in forums and share experiences.
+                </dd>
+              </div>
+            </dl>
+          </div>
 
-      <section className="mb-8">
-        <h2 className="text-2xl font-semibold mb-2">Getting Started</h2>
-        <ol className="list-decimal ml-6 text-base text-gray-700 space-y-2">
-          <li>Sign up or log in to your AgriGrow account.</li>
-          <li>Navigate through the menu to explore solutions, guides, and community features.</li>
-          <li>Use the search bar to quickly find topics or solutions relevant to your needs.</li>
-          <li>Join discussions and ask questions in the Community section.</li>
-        </ol>
-      </section>
+          {/* Section: Getting Started */}
+          <div className="border-t border-gray-200 pt-16">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-8">
+              Getting started
+            </h2>
+            <ol className="list-decimal list-outside text-lg text-gray-600 space-y-4 leading-relaxed">
+              <li>Sign up or log in to your AgriGrow account.</li>
+              <li>Navigate through the menu to explore solutions, guides, and community features.</li>
+              <li>Use the search bar to quickly find topics or solutions relevant to your needs.</li>
+              <li>Join discussions and ask questions in the Community section.</li>
+            </ol>
+          </div>
 
-      <section className="mb-8">
-        <h2 className="text-2xl font-semibold mb-2">Contact Support</h2>
-        <p className="mb-2">
-          If you need further assistance, our support team is here to help!
-        </p>
-        <ul className="list-disc ml-6 text-base text-gray-700">
-          <li>
-            <span className="font-semibold">Email:</span>{" "}
-            <a href="mailto:support@agrigrow.com" className="text-blue-600 underline">
-              support@agrigrow.com
-            </a>
-          </li>
-          <li>
-            <span className="font-semibold">Community Forum:</span> Get help from fellow farmers and AgriGrow experts.
-          </li>
-        </ul>
-      </section>
-
-      <section>
-        <h2 className="text-2xl font-semibold mb-2">Tips for Best Experience</h2>
-        <ul className="list-disc ml-6 text-base text-gray-700 space-y-2">
-          <li>Keep your profile updated for personalized recommendations.</li>
-          <li>Enable notifications to stay informed about the latest updates and weather alerts.</li>
-          <li>Regularly check the Community page for new discussions and events.</li>
-          <li>Explore the Guides section for step-by-step instructions on using AgriGrow features.</li>
-        </ul>
-      </section>
+          {/* Section: Contact Support */}
+          <div className="border-t border-gray-200 pt-16">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-8">
+              Contact support
+            </h2>
+            <p className="text-lg text-gray-600 leading-relaxed">
+              If you need further assistance, our support team is here to help.
+            </p>
+            <p className="mt-4 text-lg text-gray-600 leading-relaxed">
+              Email: <a href="mailto:support@agrigrow.com" className="text-blue-600 underline">support@agrigrow.com</a>
+              <br />
+              Community Forum: Get help from fellow farmers and AgriGrow experts.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
 
-export default Help
+export default Help;
