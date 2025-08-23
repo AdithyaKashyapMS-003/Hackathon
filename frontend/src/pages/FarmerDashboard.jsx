@@ -17,6 +17,7 @@ function FarmerDashboard() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
+    // Fetch crop types from backend
     fetch("https://agrigrow-znib.onrender.com/api/healthdashboard/crop-types")
       .then((res) => res.json())
       .then(setCropTypes)

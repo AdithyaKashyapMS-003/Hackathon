@@ -26,14 +26,11 @@ function AiChat() {
     setLoading(true);
 
     try {
-      const res = await fetch(
-        "https://agrigrow-znib.onrender.com/api/ai/chat",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message: input }),
-        }
-      );
+      const res = await fetch("https://agrigrow-znib.onrender.com/api/ai/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: input })
+      });
       const data = await res.json();
       setMessages((prev) => [
         ...prev,

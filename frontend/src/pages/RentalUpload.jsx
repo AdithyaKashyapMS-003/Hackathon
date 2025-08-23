@@ -44,13 +44,10 @@ function RentalUpload() {
     data.append("certificate", formData.certificate);
 
     try {
-      const res = await fetch(
-        "https://agrigrow-znib.onrender.com/api/equipment/upload",
-        {
-          method: "POST",
-          body: data,
-        }
-      );
+      const res = await fetch("https://agrigrow-znib.onrender.com/api/equipment/upload", {
+        method: "POST",
+        body: data,
+      });
       const result = await res.json();
       if (result.success) {
         // 3. Set message to a key instead of a raw string

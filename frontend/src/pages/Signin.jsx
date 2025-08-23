@@ -17,15 +17,12 @@ function Signin() {
     setMessage("");
     setMessageType("");
     try {
-      const res = await fetch(
-        "https://agrigrow-znib.onrender.com/api/auth/signin",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
-          body: JSON.stringify({ email, password }),
-        }
-      );
+      const res = await fetch("https://agrigrow-znib.onrender.com/api/auth/signin", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ email, password }),
+      });
 
       const data = await res.json();
       if (res.ok) {

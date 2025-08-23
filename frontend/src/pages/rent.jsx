@@ -9,9 +9,7 @@ function rent() {
   useEffect(() => {
     async function fetchEquipments() {
       try {
-        const res = await fetch(
-          "https://agrigrow-znib.onrender.com/api/equipment"
-        );
+        const res = await fetch("https://agrigrow-znib.onrender.com/api/equipment");
         const data = await res.json();
         setEquipments(data);
       } catch (err) {

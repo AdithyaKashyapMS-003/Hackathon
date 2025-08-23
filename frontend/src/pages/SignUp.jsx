@@ -13,18 +13,15 @@ function SignUp() {
     e.preventDefault();
     setMessage("");
     try {
-      const res = await fetch(
-        "https://agrigrow-znib.onrender.com/api/auth/signup",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            username: name,
-            email,
-            password,
-          }),
-        }
-      );
+      const res = await fetch("https://agrigrow-znib.onrender.com/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: name,
+          email,
+          password,
+        }),
+      });
       const data = await res.json();
       if (res.ok) {
         // 3. Set message to a key instead of a raw string
