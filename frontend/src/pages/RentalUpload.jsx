@@ -44,10 +44,13 @@ function RentalUpload() {
     data.append("certificate", formData.certificate);
 
     try {
-      const res = await fetch("http://localhost:3000/api/equipment/upload", {
-        method: "POST",
-        body: data,
-      });
+      const res = await fetch(
+        "https://agrigrow-znib.onrender.com/api/equipment/upload",
+        {
+          method: "POST",
+          body: data,
+        }
+      );
       const result = await res.json();
       if (result.success) {
         // 3. Set message to a key instead of a raw string
@@ -74,7 +77,7 @@ function RentalUpload() {
     <div className="min-h-screen bg-gray-50 pt-24 sm:pt-32 flex justify-center items-start">
       <div className="w-full max-w-2xl p-8 bg-white rounded-2xl shadow-lg border border-gray-200">
         <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">
-          Upload Agricultural Equipment
+          {t("upload_title")}
         </h2>
 
         {message && (
@@ -86,7 +89,7 @@ function RentalUpload() {
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label className="block text-gray-700 font-medium mb-2">
-              Equipment Name
+            {t("upload_label_name")}
             </label>
             <input
               type="text"
@@ -100,7 +103,7 @@ function RentalUpload() {
 
           <div>
             <label className="block text-gray-700 font-medium mb-2">
-              Description
+              {t("upload_label_desc")}
             </label>
             <textarea
               name="description"
@@ -113,7 +116,7 @@ function RentalUpload() {
 
           <div>
             <label className="block text-gray-700 font-medium mb-2">
-              Location
+              {t("upload_label_location")}
             </label>
             <input
               type="text"
@@ -127,7 +130,7 @@ function RentalUpload() {
 
           <div>
             <label className="block text-gray-700 font-medium mb-2">
-              Price Per Day (₹)
+              {t("upload_label_price")}
             </label>
             <input
               type="number"
@@ -142,7 +145,7 @@ function RentalUpload() {
 
           <div>
             <label className="block text-gray-700 font-medium mb-2">
-              Certificate Image
+              {t("upload_label_cert")}
             </label>
             <input
               type="file"
@@ -163,7 +166,7 @@ function RentalUpload() {
 
           <div>
             <label className="block text-gray-700 font-medium mb-2">
-              Equipment Image
+              {t("upload_label_image")}
             </label>
             <input
               type="file"
@@ -186,7 +189,7 @@ function RentalUpload() {
             type="submit"
             className="w-full bg-green-600 text-white font-bold py-3 rounded-xl hover:bg-green-700 transition transform duration-200 hover:scale-105"
           >
-            Upload Equipment
+            {t("upload_button")}
           </button>
         </form>
       </div>

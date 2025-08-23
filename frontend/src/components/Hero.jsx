@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function Hero() {
   const { t } = useTranslation();
@@ -42,22 +43,18 @@ function Hero() {
           </svg>
         </div>
       </div>
-
       {/* Foreground Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-
         {/* Left Text Section */}
         <div className="lg:w-1/2 text-center lg:text-left">
           <h1 className="text-5xl sm:text-6xl font-extrabold text-gray-900 leading-tight">
-            Farming made <span className="text-green-600">simple</span> 🌱
+            {t("hero_title")}
           </h1>
           <p className="mt-6 text-lg sm:text-xl text-gray-600 max-w-xl mx-auto lg:mx-0">
-            All your farming needs in one place — from crop health to market
-            prices, weather forecasts, and government schemes.
+            {t("hero_subtitle")}
           </p>
           <p className="mt-4 text-md text-gray-500 max-w-xl mx-auto lg:mx-0">
-            AgriGrow empowers farmers with simple, practical guidance — no jargon,
-            just real solutions that work for you.
+            {t("hero_description")}
           </p>
 
           {/* CTA Buttons */}
@@ -66,13 +63,13 @@ function Hero() {
               to="/dashboard"
               className="px-6 py-3 rounded-full bg-green-600 text-white font-semibold shadow-md hover:bg-green-700 transition"
             >
-              Start your journey
+              {t("start_your_journey")}
             </Link>
             <Link
               to="/explore"
               className="px-6 py-3 rounded-full border border-gray-300 text-gray-800 font-semibold hover:bg-gray-100 transition"
             >
-              Explore features
+              {t("explore_features")}
             </Link>
           </div>
         </div>
@@ -85,7 +82,7 @@ function Hero() {
           />
         </div>
       </div>
-gif
+      gif
       {/* Tailwind CSS Animations */}
       <style>
         {`

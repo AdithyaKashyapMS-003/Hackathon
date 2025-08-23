@@ -13,15 +13,18 @@ function SignUp() {
     e.preventDefault();
     setMessage("");
     try {
-      const res = await fetch("http://localhost:3000/api/auth/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          username: name,
-          email,
-          password,
-        }),
-      });
+      const res = await fetch(
+        "https://agrigrow-znib.onrender.com/api/auth/signup",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            username: name,
+            email,
+            password,
+          }),
+        }
+      );
       const data = await res.json();
       if (res.ok) {
         // 3. Set message to a key instead of a raw string
@@ -42,7 +45,7 @@ function SignUp() {
       <div className="w-full max-w-md">
         <div className="p-10 rounded-2xl shadow-xl bg-white border border-gray-100">
           <h2 className="text-4xl font-bold text-gray-800 mb-8 text-center tracking-tight">
-            Sign Up
+            {t("signup_title")}
           </h2>
 
           {message && (
@@ -59,7 +62,9 @@ function SignUp() {
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-gray-600 font-semibold mb-2">Full Name</label>
+              <label className="block text-gray-600 font-semibold mb-2">
+                {t("signup_label_name")}
+              </label>
               <input
                 type="text"
                 className="w-full px-5 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-gray-400 transition-colors duration-200"
@@ -70,7 +75,9 @@ function SignUp() {
             </div>
 
             <div>
-              <label className="block text-gray-600 font-semibold mb-2">Email Address</label>
+              <label className="block text-gray-600 font-semibold mb-2">
+                {t("signup_label_email")}
+              </label>
               <input
                 type="email"
                 className="w-full px-5 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-gray-400 transition-colors duration-200"
@@ -81,7 +88,9 @@ function SignUp() {
             </div>
 
             <div>
-              <label className="block text-gray-600 font-semibold mb-2">Password</label>
+              <label className="block text-gray-600 font-semibold mb-2">
+                {t("signup_label_password")}
+              </label>
               <input
                 type="password"
                 className="w-full px-5 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-gray-400 transition-colors duration-200"
@@ -95,14 +104,14 @@ function SignUp() {
               type="submit"
               className="w-full bg-black text-white font-bold text-lg py-4 rounded-xl hover:bg-gray-800 transition-colors duration-200 shadow-lg transform hover:scale-105"
             >
-              Create Account
+              {t("signup_button")}
             </button>
           </form>
 
           <p className="mt-8 text-sm text-center text-gray-500">
-            Already have an account?{" "}
+            {t("signup_have_account")}{" "}
             <a href="/signin" className="text-black font-bold hover:underline">
-              Sign In
+              {t("signin_title")}
             </a>
           </p>
         </div>

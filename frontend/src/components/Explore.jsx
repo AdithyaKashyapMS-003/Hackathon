@@ -128,48 +128,52 @@
 // }
 
 // export default Explore;
-import React from "react";
+import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 function Explore() {
-  const features = [
-    {
-      title: "Farmer Financial Health Dashboard",
-      desc: "Get a complete overview of your farm's income, expenses, and profit.",
-      link: "/dashboard",
-      bg: "bg-green-100",
-      hover: "hover:bg-green-200",
-    },
-    {
-      title: "AI Chat Bot",
-      desc: "Interact with AI to get personalized farming advice instantly.",
-      link: "/ai-chat",
-      bg: "bg-green-100",
-      hover: "hover:bg-green-200",
-    },
-    {
-      title: "Weather Updates",
-      desc: "Get real-time, hyper-local weather information to plan your day.",
-      link: "/weather",
-      bg: "bg-green-100",
-      hover: "hover:bg-green-200",
-    },
-    {
-      title: "Market Place",
-      desc: "Explore government subsidies, benefits, and eligibility criteria.",
-      link: "/market-place",
-      bg: "bg-green-100",
-      hover: "hover:bg-green-200",
-    },
-    {
-      title: "Community",
-      desc: "Ask and learn from a network of fellow farmers and experts.",
-      link: "/community",
-      bg: "bg-green-100",
-      hover: "hover:bg-green-200",
-    },
-  ];
+  const { t } = useTranslation();
+  const features = useMemo(
+    () => [
+      {
+        title: t("card1_title"),
+        desc: t("card1_desc"),
+        link: "/dashboard",
+        bg: "bg-green-100",
+        hover: "hover:bg-green-200",
+      },
+      {
+        title: t("card2_title"),
+        desc: t("card2_desc"),
+        link: "/ai-chat",
+        bg: "bg-green-100",
+        hover: "hover:bg-green-200",
+      },
+      {
+        title: t("card3_title"),
+        desc: t("card3_desc"),
+        link: "/weather",
+        bg: "bg-green-100",
+        hover: "hover:bg-green-200",
+      },
+      {
+        title: t("card4_title"),
+        desc: t("card4_desc"),
+        link: "/market-place",
+        bg: "bg-green-100",
+        hover: "hover:bg-green-200",
+      },
+      {
+        title: t("card5_title"),
+        desc: t("card5_desc"),
+        link: "/community",
+        bg: "bg-green-100",
+        hover: "hover:bg-green-200",
+      },
+    ],
+    [t]
+  );
 
   return (
     <section className="relative py-20 overflow-hidden">
@@ -211,12 +215,10 @@ function Explore() {
       <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8 text-center">
         {/* Hero Title */}
         <h2 className="text-5xl sm:text-6xl font-extrabold text-gray-900 leading-tight">
-          The smart farming assistant
-          <br /> you never had 🌱
+          {t("explore_title")}
         </h2>
         <p className="mt-6 text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
-          AgriGrow does the hard work for you, so you can focus on growing your
-          business.
+          {t("explore_description")}
         </p>
       </div>
 
@@ -233,7 +235,7 @@ function Explore() {
             </h3>
             <p className="mt-3 text-gray-700">{item.desc}</p>
             <span className="mt-4 inline-block text-green-900 font-medium group-hover:underline">
-              Learn more →
+              {t("learn_more")}
             </span>
           </Link>
         ))}
