@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next"; // 1. Import hook
 
 function FarmerDashboard() {
+  const { t } = useTranslation(); // 2. Initialize hook
   const [cropTypes, setCropTypes] = useState([]);
   const [form, setForm] = useState({
     loanAmount: "",
@@ -15,7 +17,6 @@ function FarmerDashboard() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    // Fetch crop types from backend
     fetch("http://localhost:3000/api/healthdashboard/crop-types")
       .then((res) => res.json())
       .then(setCropTypes)
@@ -49,10 +50,11 @@ function FarmerDashboard() {
       if (res.ok) {
         setEstimatedIncome(data.estimatedIncome);
       } else {
-        setMessage(data.message || "Error calculating income.");
+        // 3. Set the message to a key, not a raw string
+        setMessage(data.message ? "db_error_calculation" : "db_error_unknown");
       }
     } catch {
-      setMessage("Network error.");
+      setMessage("db_error_network");
     }
   };
 
@@ -62,104 +64,115 @@ function FarmerDashboard() {
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight">
-            Hello, Farmer! 👋
+            {t("db_header_title")}
           </h1>
           <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
-            Your friendly guide to government schemes, financial support, and more, all designed to help you thrive.
+            {t("db_header_subtitle")}
           </p>
         </div>
 
         {/* Key Schemes / Metrics */}
-       {/* Key Schemes / Metrics */}
-<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-  <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-200 transform transition-transform duration-300 hover:scale-105">
-    <h2 className="text-sm text-gray-500 uppercase tracking-wider font-bold mb-2">
-      PM-KISAN Samman Nidhi
-    </h2>
-    <p className="text-xl font-bold text-green-600">₹6,000 yearly</p>
-    <p className="text-sm text-gray-500 mt-1">Direct support in 3 installments</p>
-    <a
-      href="https://pmkisan.gov.in/"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="mt-4 inline-block text-white bg-green-600 px-4 py-2 rounded-xl hover:bg-green-700 transition"
-    >
-      Apply Now
-    </a>
-  </div>
-
-  <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-200 transform transition-transform duration-300 hover:scale-105">
-    <h2 className="text-sm text-gray-500 uppercase tracking-wider font-bold mb-2">
-      Kisan Credit Card (KCC)
-    </h2>
-    <p className="text-xl font-bold text-blue-600">Low-interest loans</p>
-    <p className="text-sm text-gray-500 mt-1">Get up to ₹3 lakhs for crops</p>
-    <a
-      href="https://www.kisancreditcard.com/"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="mt-4 inline-block text-white bg-blue-600 px-4 py-2 rounded-xl hover:bg-blue-700 transition"
-    >
-      Apply Now
-    </a>
-  </div>
-
-  <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-200 transform transition-transform duration-300 hover:scale-105">
-    <h2 className="text-sm text-gray-500 uppercase tracking-wider font-bold mb-2">
-      PM Fasal Bima Yojana
-    </h2>
-    <p className="text-xl font-bold text-orange-600">Crop insurance</p>
-    <p className="text-sm text-gray-500 mt-1">Protect your harvest with low premiums</p>
-    <a
-      href="https://pmfby.gov.in/"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="mt-4 inline-block text-white bg-orange-600 px-4 py-2 rounded-xl hover:bg-orange-700 transition"
-    >
-      Apply Now
-    </a>
-  </div>
-
-  <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-200 transform transition-transform duration-300 hover:scale-105">
-    <h2 className="text-sm text-gray-500 uppercase tracking-wider font-bold mb-2">
-      Soil Health Card Scheme
-    </h2>
-    <p className="text-xl font-bold text-gray-800">Free soil testing</p>
-    <p className="text-sm text-gray-500 mt-1">Unlock better yields with data</p>
-    <a
-      href="https://soilhealth.dac.gov.in/"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="mt-4 inline-block text-white bg-gray-800 px-4 py-2 rounded-xl hover:bg-gray-900 transition"
-    >
-      Apply Now
-    </a>
-  </div>
-</div>
-
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-200 transform transition-transform duration-300 hover:scale-105">
+            <h2 className="text-sm text-gray-500 uppercase tracking-wider font-bold mb-2">
+              {t("db_scheme1_title")}
+            </h2>
+            <p className="text-xl font-bold text-green-600">
+              {t("db_scheme1_benefit")}
+            </p>
+            <p className="text-sm text-gray-500 mt-1">{t("db_scheme1_desc")}</p>
+            <a
+              href="https://pmkisan.gov.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-block text-white bg-green-600 px-4 py-2 rounded-xl hover:bg-green-700 transition"
+            >
+              {t("db_apply_now")}
+            </a>
+          </div>
+          <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-200 transform transition-transform duration-300 hover:scale-105">
+            <h2 className="text-sm text-gray-500 uppercase tracking-wider font-bold mb-2">
+              {t("db_scheme2_title")}
+            </h2>
+            <p className="text-xl font-bold text-blue-600">
+              {t("db_scheme2_benefit")}
+            </p>
+            <p className="text-sm text-gray-500 mt-1">{t("db_scheme2_desc")}</p>
+            <a
+              href="https://www.kisancreditcard.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-block text-white bg-blue-600 px-4 py-2 rounded-xl hover:bg-blue-700 transition"
+            >
+              {t("db_apply_now")}
+            </a>
+          </div>
+          <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-200 transform transition-transform duration-300 hover:scale-105">
+            <h2 className="text-sm text-gray-500 uppercase tracking-wider font-bold mb-2">
+              {t("db_scheme3_title")}
+            </h2>
+            <p className="text-xl font-bold text-orange-600">
+              {t("db_scheme3_benefit")}
+            </p>
+            <p className="text-sm text-gray-500 mt-1">{t("db_scheme3_desc")}</p>
+            <a
+              href="https://pmfby.gov.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-block text-white bg-orange-600 px-4 py-2 rounded-xl hover:bg-orange-700 transition"
+            >
+              {t("db_apply_now")}
+            </a>
+          </div>
+          <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-200 transform transition-transform duration-300 hover:scale-105">
+            <h2 className="text-sm text-gray-500 uppercase tracking-wider font-bold mb-2">
+              {t("db_scheme4_title")}
+            </h2>
+            <p className="text-xl font-bold text-gray-800">
+              {t("db_scheme4_benefit")}
+            </p>
+            <p className="text-sm text-gray-500 mt-1">{t("db_scheme4_desc")}</p>
+            <a
+              href="https://soilhealth.dac.gov.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-block text-white bg-gray-800 px-4 py-2 rounded-xl hover:bg-gray-900 transition"
+            >
+              {t("db_apply_now")}
+            </a>
+          </div>
+        </div>
 
         {/* Recent Updates Section */}
         <div className="mt-20">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">
-            Latest Updates
+            {t("db_updates_title")}
           </h2>
           <div className="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-200">
             <ul className="divide-y divide-gray-200">
               <li className="flex justify-between items-center py-4 px-6 text-gray-800">
-                <span className="font-medium">PM-KISAN installment released (August 2025)</span>
-                <span className="font-bold text-green-600">₹2,000 credited</span>
+                <span className="font-medium">{t("db_update1_text")}</span>
+                <span className="font-bold text-green-600">
+                  {t("db_update1_value")}
+                </span>
               </li>
               <li className="flex justify-between items-center py-4 px-6 text-gray-800">
-                <span className="font-medium">New subsidy on solar-powered pumps announced</span>
-                <span className="font-bold text-blue-600">Up to 60% subsidy</span>
+                <span className="font-medium">{t("db_update2_text")}</span>
+                <span className="font-bold text-blue-600">
+                  {t("db_update2_value")}
+                </span>
               </li>
               <li className="flex justify-between items-center py-4 px-6 text-gray-800">
-                <span className="font-medium">Crop insurance claim settlement update</span>
-                <span className="font-bold text-green-600">₹12,000 approved</span>
+                <span className="font-medium">{t("db_update3_text")}</span>
+                <span className="font-bold text-green-600">
+                  {t("db_update3_value")}
+                </span>
               </li>
               <li className="flex justify-between items-center py-4 px-6 text-gray-800">
-                <span className="font-medium">Fertilizer subsidy increased for Kharif season</span>
-                <span className="font-bold text-orange-600">Extra 15% support</span>
+                <span className="font-medium">{t("db_update4_text")}</span>
+                <span className="font-bold text-orange-600">
+                  {t("db_update4_value")}
+                </span>
               </li>
             </ul>
           </div>
@@ -168,14 +181,14 @@ function FarmerDashboard() {
         {/* Estimate Income Form */}
         <div className="mt-20">
           <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-            Estimate Your Potential Income
+            {t("db_form_title")}
           </h2>
           <div className="max-w-xl mx-auto p-8 bg-white rounded-2xl shadow-md border border-gray-200">
             <form onSubmit={handleSubmit} className="space-y-6">
               <input
                 type="number"
                 name="loanAmount"
-                placeholder="Loan Amount (₹)"
+                placeholder={t("db_form_loan_placeholder")}
                 className="w-full border-2 border-gray-200 p-4 rounded-xl focus:outline-none focus:border-blue-500 transition"
                 value={form.loanAmount}
                 onChange={handleChange}
@@ -184,7 +197,7 @@ function FarmerDashboard() {
               <input
                 type="number"
                 name="interest"
-                placeholder="Interest Rate (%)"
+                placeholder={t("db_form_interest_placeholder")}
                 className="w-full border-2 border-gray-200 p-4 rounded-xl focus:outline-none focus:border-blue-500 transition"
                 value={form.interest}
                 onChange={handleChange}
@@ -193,7 +206,7 @@ function FarmerDashboard() {
               <input
                 type="number"
                 name="tenure"
-                placeholder="Tenure (months)"
+                placeholder={t("db_form_tenure_placeholder")}
                 className="w-full border-2 border-gray-200 p-4 rounded-xl focus:outline-none focus:border-blue-500 transition"
                 value={form.tenure}
                 onChange={handleChange}
@@ -206,7 +219,7 @@ function FarmerDashboard() {
                 onChange={handleChange}
                 required
               >
-                <option value="">Select Crop Type</option>
+                <option value="">{t("db_form_select_crop")}</option>
                 {cropTypes.map((crop) => (
                   <option key={crop} value={crop}>
                     {crop}
@@ -216,7 +229,7 @@ function FarmerDashboard() {
               <input
                 type="number"
                 name="landSize"
-                placeholder="Land Size (acres)"
+                placeholder={t("db_form_land_placeholder")}
                 className="w-full border-2 border-gray-200 p-4 rounded-xl focus:outline-none focus:border-blue-500 transition"
                 value={form.landSize}
                 onChange={handleChange}
@@ -225,7 +238,7 @@ function FarmerDashboard() {
               <input
                 type="text"
                 name="location"
-                placeholder="Location"
+                placeholder={t("db_form_location_placeholder")}
                 className="w-full border-2 border-gray-200 p-4 rounded-xl focus:outline-none focus:border-blue-500 transition"
                 value={form.location}
                 onChange={handleChange}
@@ -234,7 +247,7 @@ function FarmerDashboard() {
               <input
                 type="number"
                 name="expenses"
-                placeholder="Total Expenses (optional)"
+                placeholder={t("db_form_expenses_placeholder")}
                 className="w-full border-2 border-gray-200 p-4 rounded-xl focus:outline-none focus:border-blue-500 transition"
                 value={form.expenses}
                 onChange={handleChange}
@@ -243,18 +256,21 @@ function FarmerDashboard() {
                 type="submit"
                 className="w-full bg-blue-500 text-white font-bold py-4 rounded-xl shadow-md hover:bg-blue-600 transition transform duration-300 hover:scale-105"
               >
-                Estimate Income
+                {t("db_form_submit_button")}
               </button>
             </form>
             {estimatedIncome !== null && (
               <div className="mt-8 p-4 bg-green-50 rounded-xl text-center">
                 <p className="text-xl text-green-700 font-bold">
-                  Estimated Income: ₹{estimatedIncome}
+                  {/* 4. Use interpolation for dynamic values */}
+                  {t("db_form_result", { income: estimatedIncome })}
                 </p>
               </div>
             )}
             {message && (
-              <div className="mt-4 p-4 text-red-600 text-center">{message}</div>
+              <div className="mt-4 p-4 text-red-600 text-center">
+                {t(message)}
+              </div>
             )}
           </div>
         </div>

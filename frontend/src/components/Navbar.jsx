@@ -86,7 +86,7 @@ function Navbar() {
               to="/signup"
               className="py-2 px-4 border border-blue-500 rounded text-blue-500 font-medium hover:bg-blue-50 transition"
             >
-              Sign Up
+              {t("nav_signin")}
             </Link>
           )}
         </div>
