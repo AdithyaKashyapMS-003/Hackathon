@@ -7,7 +7,7 @@ function Rent() {
   useEffect(() => {
     async function fetchEquipments() {
       try {
-        const res = await fetch("http://localhost:3000/api/equipment");
+        const res = await fetch("https://agrigrow-znib.onrender.com/api/equipment");
         const data = await res.json();
         setEquipments(data);
       } catch (err) {
@@ -37,7 +37,7 @@ function Rent() {
             >
               {/* Equipment Image */}
               <img
-                src={`http://localhost:3000${item.imageUrl}`}
+                src={`https://agrigrow-znib.onrender.com${item.imageUrl}`}
                 alt={item.name}
                 className="w-full h-48 object-cover"
               />
@@ -57,7 +57,7 @@ function Rent() {
                 {item.certificateUrl && (
                   <div className="mt-4 relative flex justify-center items-center">
                     <img
-                      src={`http://localhost:3000${item.certificateUrl}`}
+                      src={`https://agrigrow-znib.onrender.com${item.certificateUrl}`}
                       alt={`${item.name} Certificate`}
                       className="w-28 h-28 object-cover rounded border border-gray-200"
                     />
