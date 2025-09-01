@@ -212,28 +212,28 @@ function Explore() {
       </div>
 
       {/* Foreground content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8 text-center">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Hero Title */}
-        <h2 className="text-5xl sm:text-6xl font-extrabold text-gray-900 leading-tight">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-gray-900 leading-tight">
           {t("explore_title")}
         </h2>
-        <p className="mt-6 text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
+        <p className="mt-4 sm:mt-6 text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto">
           {t("explore_description")}
         </p>
       </div>
 
       {/* Feature Cards */}
-      <div className="relative z-10 mt-20 max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-6">
+      <div className="relative z-10 mt-12 sm:mt-16 lg:mt-20 max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 px-4 sm:px-6">
         {features.map((item, index) => (
           <Link
             to={item.link}
             key={index}
-            className={`group ${item.bg} ${item.hover} rounded-2xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1 p-8 text-left`}
+            className={`group ${item.bg} ${item.hover} rounded-2xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1 p-4 sm:p-6 lg:p-8 text-left`}
           >
-            <h3 className="text-xl font-bold text-gray-900 group-hover:text-green-900 transition">
+            <h3 className="text-lg sm:text-xl font-bold text-gray-900 group-hover:text-green-900 transition">
               {item.title}
             </h3>
-            <p className="mt-3 text-gray-700">{item.desc}</p>
+            <p className="mt-2 sm:mt-3 text-sm sm:text-base text-gray-700">{item.desc}</p>
             <span className="mt-4 inline-block text-green-900 font-medium group-hover:underline">
               {t("learn_more")}
             </span>

@@ -126,34 +126,34 @@ function Weather() {
   );
 
   return (
-    <div className="bg-gray-100 py-24 font-sans antialiased">
+    <div className="bg-gray-100 py-20 sm:py-24 font-sans antialiased">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Weather Broadcasts Section */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight">
+        <div className="text-center mb-12 sm:mb-16">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold text-gray-900 leading-tight">
             {t("weather_broadcast_title")}
           </h1>
-          <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="mt-3 sm:mt-4 text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto">
             {t("weather_broadcast_desc")}
           </p>
         </div>
 
         {/* Weather Sources Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-24">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mb-16 sm:mb-20 lg:mb-24">
           {weatherSources.map((source, index) => (
             <div
               key={index}
-              className="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition transform duration-300 hover:scale-105"
+              className="bg-white p-4 sm:p-6 lg:p-8 rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition transform duration-300 hover:scale-105"
             >
-              <h3 className="text-xl font-extrabold text-blue-600 mb-2">
+              <h3 className="text-lg sm:text-xl font-extrabold text-blue-600 mb-2">
                 {source.name}
               </h3>
-              <p className="text-base text-gray-700 mb-4">{source.desc}</p>
+              <p className="text-sm sm:text-base text-gray-700 mb-4">{source.desc}</p>
               <a
                 href={source.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-blue-500 text-white font-bold py-3 px-6 rounded-xl hover:bg-blue-600 transition-colors"
+                className="inline-block bg-blue-500 text-white font-bold py-2 sm:py-3 px-4 sm:px-6 rounded-xl hover:bg-blue-600 transition-colors text-sm sm:text-base"
               >
                 {t("weather_watch_live_button")}
               </a>
@@ -162,33 +162,33 @@ function Weather() {
         </div>
 
         {/* Weather News Section */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold text-gray-900 leading-tight">
             {t("weather_news_title")}
           </h2>
-          <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="mt-3 sm:mt-4 text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto">
             {t("weather_news_desc")}
           </p>
         </div>
 
         {/* News Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {weatherNews.map((news, index) => (
             <div
               key={index}
-              className="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition transform duration-300 hover:scale-105"
+              className="bg-white p-4 sm:p-6 lg:p-8 rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition transform duration-300 hover:scale-105"
             >
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">
                 {news.title}
               </h3>
-              <p className="text-sm text-gray-500 mb-4">
+              <p className="text-xs sm:text-sm text-gray-500 mb-4">
                 {t("weather_source_label")} {news.source}
               </p>
               <a
                 href={news.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-green-500 text-white font-bold py-2 px-5 rounded-xl hover:bg-green-600 transition-colors"
+                className="inline-block bg-green-500 text-white font-bold py-2 px-4 sm:px-5 rounded-xl hover:bg-green-600 transition-colors text-sm sm:text-base"
               >
                 {t("weather_read_article_button")}
               </a>

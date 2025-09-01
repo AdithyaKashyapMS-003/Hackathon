@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { API_BASE_URL } from "../config/api";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { useTranslation } from "react-i18next";
 
 function Signin() {
   const { t } = useTranslation();
@@ -17,7 +18,7 @@ function Signin() {
     setMessage("");
     setMessageType("");
     try {
-      const res = await fetch("https://agrigrow-znib.onrender.com/api/auth/signin", {
+      const res = await fetch(`${API_BASE_URL}/api/auth/signin`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -41,10 +42,10 @@ function Signin() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 font-sans antialiased py-20 px-4">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 font-sans antialiased pt-20 sm:pt-24 lg:pt-32 pb-8 px-4">
       <div className="w-full max-w-md">
-        <div className="p-10 rounded-2xl shadow-xl bg-white border border-gray-100">
-          <h2 className="text-4xl font-bold text-gray-800 mb-8 text-center tracking-tight">
+        <div className="p-6 sm:p-8 lg:p-10 rounded-2xl shadow-xl bg-white border border-gray-100">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-6 sm:mb-8 text-center tracking-tight">
             {/* Using component-specific key */}
             {t("signin_title")}
           </h2>

@@ -44,30 +44,30 @@ function Hero() {
         </div>
       </div>
       {/* Foreground Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-8 lg:gap-20">
         {/* Left Text Section */}
         <div className="lg:w-1/2 text-center lg:text-left">
-          <h1 className="text-5xl sm:text-6xl font-extrabold text-gray-900 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight">
             {t("hero_title")}
           </h1>
-          <p className="mt-6 text-lg sm:text-xl text-gray-600 max-w-xl mx-auto lg:mx-0">
+          <p className="mt-4 sm:mt-6 text-base sm:text-lg lg:text-xl text-gray-600 max-w-xl mx-auto lg:mx-0">
             {t("hero_subtitle")}
           </p>
-          <p className="mt-4 text-md text-gray-500 max-w-xl mx-auto lg:mx-0">
+          <p className="mt-3 sm:mt-4 text-sm sm:text-md text-gray-500 max-w-xl mx-auto lg:mx-0">
             {t("hero_description")}
           </p>
 
           {/* CTA Buttons */}
-          <div className="mt-8 flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+          <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row justify-center lg:justify-start gap-3 sm:gap-4">
             <Link
               to="/dashboard"
-              className="px-6 py-3 rounded-full bg-green-600 text-white font-semibold shadow-md hover:bg-green-700 transition"
+              className="px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-green-600 text-white font-semibold shadow-md hover:bg-green-700 transition text-sm sm:text-base"
             >
               {t("start_your_journey")}
             </Link>
             <Link
-              to="/explore"
-              className="px-6 py-3 rounded-full border border-gray-300 text-gray-800 font-semibold hover:bg-gray-100 transition"
+              to="/solutions"
+              className="px-4 sm:px-6 py-2 sm:py-3 rounded-full border border-gray-300 text-gray-800 font-semibold hover:bg-gray-100 transition text-sm sm:text-base"
             >
               {t("explore_features")}
             </Link>
@@ -75,14 +75,14 @@ function Hero() {
         </div>
 
         {/* Right Image Section */}
-        <div className="lg:w-1/2 flex justify-center">
+        <div className="lg:w-1/2 flex justify-center mt-8 lg:mt-0">
           <img
             src="https://media.tenor.com/XGWjg0om0fwAAAAi/kws-kws-tractor.gif"
-            className="w-full max-w-md rounded-2xl shadow-lg"
+            className="w-full max-w-xs sm:max-w-sm md:max-w-md rounded-2xl shadow-lg"
+            alt="Agricultural tractor animation"
           />
         </div>
       </div>
-      gif
       {/* Tailwind CSS Animations */}
       <style>
         {`

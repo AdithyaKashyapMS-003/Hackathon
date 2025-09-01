@@ -1,6 +1,8 @@
 import React from "react";
-
+import "./i18n"; // Your i18n configuration
 import { useTranslation } from "react-i18next";
+
+
 
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";

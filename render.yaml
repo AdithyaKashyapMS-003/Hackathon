@@ -1,0 +1,28 @@
+# Render Blueprint for AgriGrow Platform
+# Both frontend and backend deployed on Render
+
+services:
+  - type: web
+    name: agrigrow-backend
+    env: node
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: FRONTEND_URL
+        value: https://frontend-btwp.onrender.com
+      - key: PORT
+        value: 5000
+
+  - type: web
+    name: agrigrow-frontend
+    env: static
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://agrigrow-znib.onrender.com
+
+# Note: Environment variables like MONGO_URI, JWT_SECRET, and GEMINI_API_KEY
+# should be set manually in the Render dashboard for security

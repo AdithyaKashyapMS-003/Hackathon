@@ -1,11 +1,10 @@
 import healthdashboard from '../models/healthdashboard.model.js';
-import { errorHandler } from '../utils/error.js';
 
+// Add Note (no user required)
 export const addNote = async (req, res, next) => {
   try {
     const { note } = req.body;
-    const userId = req.user.id; 
-    const newNote = new Dashboard({ userId, note });
+    const newNote = new healthdashboard({ note });
     await newNote.save();
     res.status(201).json(newNote);
   } catch (error) {
@@ -13,22 +12,24 @@ export const addNote = async (req, res, next) => {
   }
 };
 
+// Get Notes (all notes, not user-specific)
 export const getNotes = async (req, res, next) => {
   try {
-    const userId = req.user.id;
-    const notes = await Dashboard.find({ userId });
+    const notes = await healthdashboard.find();
     res.status(200).json(notes);
   } catch (error) {
     next(error);
   }
 };
 
+// Calculate EMI (works for everyone)
 export const calculateEMI = (req, res, next) => {
   try {
     const { principal, annualRate, tenureMonths } = req.body;
     if (!principal || !annualRate || !tenureMonths) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
+
     const P = Number(principal);
     const R = Number(annualRate) / 12 / 100;
     const N = Number(tenureMonths);
@@ -41,11 +42,10 @@ export const calculateEMI = (req, res, next) => {
   }
 };
 
+// Farmer Log calculation (no login needed)
 export const addFarmerLog = async (req, res, next) => {
   try {
     const { loanAmount, interest, tenure, cropType, landSize, location, expenses } = req.body;
-    const userId = req.user.id;
-
 
     const cropPricesPerQt = {
       paddy: 2369,
@@ -78,7 +78,6 @@ export const addFarmerLog = async (req, res, next) => {
       maize_market: 2541,
     };
 
-
     function estimateIncome(cropType, landSizeInAcres, yieldQtPerAcre = 10) {
       const key = cropType.toLowerCase().replace(/\s+/g, '_');
       const price = cropPricesPerQt[key] ?? 5000;
@@ -87,8 +86,8 @@ export const addFarmerLog = async (req, res, next) => {
 
     const estimatedIncome = estimateIncome(cropType, landSize);
 
+    // Store log (without userId)
     const newLog = new healthdashboard({
-      userId,
       loanAmount,
       interest,
       tenure,
@@ -96,7 +95,7 @@ export const addFarmerLog = async (req, res, next) => {
       landSize,
       location,
       expenses: expenses || [],
-      estimatedIncome
+      estimatedIncome,
     });
 
     await newLog.save();

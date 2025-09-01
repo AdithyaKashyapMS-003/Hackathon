@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const healthdashboardSchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: false },
   loanAmount: Number,
   interest: Number,
   tenure: Number,

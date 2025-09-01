@@ -1,54 +1,63 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Use Link for internal navigation
-import { useTranslation } from "react-i18next"; // 1. Import hook
+import { useTranslation } from "react-i18next";
+import { API_BASE_URL } from "../config/api";
+import { Link, useNavigate } from "react-router-dom"; 
 
 function SignUp() {
-  const { t } = useTranslation(); // 2. Initialize hook
+  const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage("");
     try {
-      const res = await fetch("https://agrigrow-znib.onrender.com/api/auth/signup", {
+      const res = await fetch(`${API_BASE_URL}/api/auth/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          username: name,
+          username: name, // ✅ must match backend schema
           email,
           password,
         }),
+        credentials: "include", // ✅ important: allow cookies (JWT) from backend
       });
+
       const data = await res.json();
+
       if (res.ok) {
-        // 3. Set message to a key instead of a raw string
-        setMessage("signup_success");
+        setMessage(t("signup_success"));
         setEmail("");
         setPassword("");
         setName("");
+
+        // ✅ redirect to login after success
+        setTimeout(() => {
+          navigate("/signin");
+        }, 1500);
       } else {
-        setMessage(data.message ? "signup_failed" : "signup_error_unknown");
+        setMessage(data.message || t("signup_failed"));
       }
     } catch (err) {
-      setMessage("signup_error_network");
+      setMessage(t("signup_error_network"));
     }
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 font-sans antialiased py-20 px-4">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 font-sans antialiased pt-20 sm:pt-24 lg:pt-32 pb-8 px-4">
       <div className="w-full max-w-md">
-        <div className="p-10 rounded-2xl shadow-xl bg-white border border-gray-100">
-          <h2 className="text-4xl font-bold text-gray-800 mb-8 text-center tracking-tight">
+        <div className="p-6 sm:p-8 lg:p-10 rounded-2xl shadow-xl bg-white border border-gray-100">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-6 sm:mb-8 text-center tracking-tight">
             {t("signup_title")}
           </h2>
 
           {message && (
             <div
               className={`p-4 rounded-lg text-sm text-center mb-6 font-medium ${
-                message.includes("successful")
+                message.includes("success")
                   ? "bg-green-100 text-green-700"
                   : "bg-red-100 text-red-700"
               }`}
@@ -107,9 +116,9 @@ function SignUp() {
 
           <p className="mt-8 text-sm text-center text-gray-500">
             {t("signup_have_account")}{" "}
-            <a href="/signin" className="text-black font-bold hover:underline">
+            <Link to="/signin" className="text-black font-bold hover:underline">
               {t("signin_title")}
-            </a>
+            </Link>
           </p>
         </div>
       </div>

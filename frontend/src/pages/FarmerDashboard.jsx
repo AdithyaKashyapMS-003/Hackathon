@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next"; // 1. Import hook
+import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { API_BASE_URL } from "../config/api"; // 1. Import hook
 
 function FarmerDashboard() {
   const { t } = useTranslation(); // 2. Initialize hook
@@ -18,7 +19,7 @@ function FarmerDashboard() {
 
   useEffect(() => {
     // Fetch crop types from backend
-    fetch("https://agrigrow-znib.onrender.com/api/healthdashboard/crop-types")
+    fetch(`${API_BASE_URL}/api/healthdashboard/crop-types`)
       .then((res) => res.json())
       .then(setCropTypes)
       .catch(console.error);
@@ -33,20 +34,20 @@ function FarmerDashboard() {
     setMessage("");
     setEstimatedIncome(null);
     try {
-      const res = await fetch(
-        "https://agrigrow-znib.onrender.com/api/healthdashboard/farmer-log",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
-          body: JSON.stringify({
-            ...form,
-            expenses: form.expenses
-              ? [{ description: "General", amount: Number(form.expenses) }]
-              : [],
-          }),
-        }
-      );
+     const res = await fetch(
+  `${API_BASE_URL}/api/healthdashboard/farmer-log`,
+  {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      ...form,
+      expenses: form.expenses
+        ? [{ description: "General", amount: Number(form.expenses) }]
+        : [],
+    }),
+  }
+);
+
       const data = await res.json();
       if (res.ok) {
         setEstimatedIncome(data.estimatedIncome);
@@ -60,22 +61,22 @@ function FarmerDashboard() {
   };
 
   return (
-    <div className="bg-gray-100 font-sans min-h-screen antialiased pt-24 sm:pt-32">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div className="bg-gray-100 font-sans min-h-screen antialiased pt-20 sm:pt-24 lg:pt-32">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight">
+        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight">
             {t("db_header_title")}
           </h1>
-          <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="mt-3 sm:mt-4 text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto px-4">
             {t("db_header_subtitle")}
           </p>
         </div>
 
         {/* Key Schemes / Metrics */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-200 transform transition-transform duration-300 hover:scale-105">
-            <h2 className="text-sm text-gray-500 uppercase tracking-wider font-bold mb-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div className="bg-white p-4 sm:p-6 rounded-2xl shadow-md border border-gray-200 transform transition-transform duration-300 hover:scale-105">
+            <h2 className="text-xs sm:text-sm text-gray-500 uppercase tracking-wider font-bold mb-2">
               {t("db_scheme1_title")}
             </h2>
             <p className="text-xl font-bold text-green-600">
@@ -183,17 +184,17 @@ function FarmerDashboard() {
         </div>
 
         {/* Estimate Income Form */}
-        <div className="mt-20">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+        <div className="mt-12 sm:mt-16 lg:mt-20">
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 text-center px-4">
             {t("db_form_title")}
           </h2>
-          <div className="max-w-xl mx-auto p-8 bg-white rounded-2xl shadow-md border border-gray-200">
-            <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="max-w-xl mx-auto p-4 sm:p-6 lg:p-8 bg-white rounded-2xl shadow-md border border-gray-200">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
               <input
                 type="number"
                 name="loanAmount"
                 placeholder={t("db_form_loan_placeholder")}
-                className="w-full border-2 border-gray-200 p-4 rounded-xl focus:outline-none focus:border-blue-500 transition"
+                className="w-full border-2 border-gray-200 p-3 sm:p-4 rounded-xl focus:outline-none focus:border-blue-500 transition text-sm sm:text-base"
                 value={form.loanAmount}
                 onChange={handleChange}
                 required
@@ -202,7 +203,7 @@ function FarmerDashboard() {
                 type="number"
                 name="interest"
                 placeholder={t("db_form_interest_placeholder")}
-                className="w-full border-2 border-gray-200 p-4 rounded-xl focus:outline-none focus:border-blue-500 transition"
+                className="w-full border-2 border-gray-200 p-3 sm:p-4 rounded-xl focus:outline-none focus:border-blue-500 transition text-sm sm:text-base"
                 value={form.interest}
                 onChange={handleChange}
                 required
@@ -211,14 +212,14 @@ function FarmerDashboard() {
                 type="number"
                 name="tenure"
                 placeholder={t("db_form_tenure_placeholder")}
-                className="w-full border-2 border-gray-200 p-4 rounded-xl focus:outline-none focus:border-blue-500 transition"
+                className="w-full border-2 border-gray-200 p-3 sm:p-4 rounded-xl focus:outline-none focus:border-blue-500 transition text-sm sm:text-base"
                 value={form.tenure}
                 onChange={handleChange}
                 required
               />
               <select
                 name="cropType"
-                className="w-full border-2 border-gray-200 p-4 rounded-xl focus:outline-none focus:border-blue-500 transition"
+                className="w-full border-2 border-gray-200 p-3 sm:p-4 rounded-xl focus:outline-none focus:border-blue-500 transition text-sm sm:text-base"
                 value={form.cropType}
                 onChange={handleChange}
                 required
@@ -234,7 +235,7 @@ function FarmerDashboard() {
                 type="number"
                 name="landSize"
                 placeholder={t("db_form_land_placeholder")}
-                className="w-full border-2 border-gray-200 p-4 rounded-xl focus:outline-none focus:border-blue-500 transition"
+                className="w-full border-2 border-gray-200 p-3 sm:p-4 rounded-xl focus:outline-none focus:border-blue-500 transition text-sm sm:text-base"
                 value={form.landSize}
                 onChange={handleChange}
                 required
@@ -243,7 +244,7 @@ function FarmerDashboard() {
                 type="text"
                 name="location"
                 placeholder={t("db_form_location_placeholder")}
-                className="w-full border-2 border-gray-200 p-4 rounded-xl focus:outline-none focus:border-blue-500 transition"
+                className="w-full border-2 border-gray-200 p-3 sm:p-4 rounded-xl focus:outline-none focus:border-blue-500 transition text-sm sm:text-base"
                 value={form.location}
                 onChange={handleChange}
                 required
@@ -252,13 +253,13 @@ function FarmerDashboard() {
                 type="number"
                 name="expenses"
                 placeholder={t("db_form_expenses_placeholder")}
-                className="w-full border-2 border-gray-200 p-4 rounded-xl focus:outline-none focus:border-blue-500 transition"
+                className="w-full border-2 border-gray-200 p-3 sm:p-4 rounded-xl focus:outline-none focus:border-blue-500 transition text-sm sm:text-base"
                 value={form.expenses}
                 onChange={handleChange}
               />
               <button
                 type="submit"
-                className="w-full bg-blue-500 text-white font-bold py-4 rounded-xl shadow-md hover:bg-blue-600 transition transform duration-300 hover:scale-105"
+                className="w-full bg-blue-500 text-white font-bold py-3 sm:py-4 rounded-xl shadow-md hover:bg-blue-600 transition transform duration-300 hover:scale-105 text-sm sm:text-base"
               >
                 {t("db_form_submit_button")}
               </button>
