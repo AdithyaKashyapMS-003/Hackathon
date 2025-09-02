@@ -26,11 +26,10 @@ function Navbar() {
           {/* Logo */}
           <Link
             to="/"
-            className="flex items-center text-xl sm:text-2xl font-bold text-green-900 leading-none cursor-pointer"
+            className="flex items-center text-lg sm:text-2xl font-bold text-green-900 leading-none cursor-pointer"
           >
             <FaSeedling className="mr-2 text-green-700 animate-bounce" />
-            <span className="hidden sm:inline">AgriGrow</span>
-            <span className="sm:hidden">AG</span>
+            <span>AgriGrow</span>
           </Link>
 
           {/* Desktop Menu */}
@@ -60,13 +59,13 @@ function Navbar() {
             <select
               onChange={handleLanguageChange}
               value={i18n.language}
-              className="bg-gray-100 border-2 border-gray-300 rounded-md p-1 text-xs sm:text-sm font-medium focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="bg-gray-100 border-2 border-gray-300 rounded-md p-1 text-xs sm:text-sm font-medium focus:outline-none focus:ring-2 focus:ring-green-500 min-w-[80px] sm:min-w-[100px]"
             >
-              <option value="en">EN</option>
-              <option value="hi">हि</option>
-              <option value="kn">ಕ</option>
-              <option value="te">తె</option>
-              <option value="ta">த</option>
+              <option value="en">English</option>
+              <option value="hi">हिंदी</option>
+              <option value="kn">ಕನ್ನಡ</option>
+              <option value="te">తెలుగు</option>
+              <option value="ta">தமிழ்</option>
             </select>
 
             {/* Sign Up Button - Desktop */}
